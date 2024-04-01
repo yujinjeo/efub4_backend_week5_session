@@ -1,7 +1,6 @@
 package efub.session.blog.account.service;
 
 import efub.session.blog.account.domain.Account;
-import efub.session.blog.account.dto.AccountUpdateRequestDto;
 import efub.session.blog.account.dto.SignUpRequestDto;
 import efub.session.blog.account.repository.AccountRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -34,20 +33,13 @@ public class AccountService {
                 .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다.id="+id));
     }
 
-    public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
-        Account account = findAccountById(accountId);
-        account.updateAccount(requestDto.getBio(), requestDto.getNickname());
-        return account.getAccountId();
-    }
+//    public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
+//    }
 
-    @Transactional
-    public void withdraw(Long accountId) {
-        Account account = findAccountById(accountId);
-        account.withdrawAccount();
-    }
+//    @Transactional
+//    public void withdraw(Long accountId) {
+//    }
 
-    public void delete(Long accountId) {
-        Account account = findAccountById(accountId);
-        accountRepository.delete(account);
-    }
+//    public void delete(Long accountId) {
+//    }
 }

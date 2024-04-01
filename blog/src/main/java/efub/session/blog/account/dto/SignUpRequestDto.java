@@ -32,7 +32,7 @@ public class SignUpRequestDto {
         this.nickname = nickname;
     }
 
-    public Account toEntity() {
+    public Account toEntity() { //dto를 account 엔티티 객체로 변환
         return Account.builder()
                 .email(this.email)
                 .password(this.password)

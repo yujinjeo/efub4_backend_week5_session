@@ -19,7 +19,7 @@ public class AccountResponseDto {
         this.nickname = nickname;
         this.bio = bio;
     }
-    public static AccountResponseDto from(Account account) {
+    public static AccountResponseDto from(Account account) { //Account 엔티티 객체를 dto로 변환
         return new AccountResponseDto(account.getAccountId(),
                 account.getEmail(),
                 account.getNickname(),
