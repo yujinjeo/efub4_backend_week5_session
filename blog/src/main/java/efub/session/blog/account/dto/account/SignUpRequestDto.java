@@ -1,4 +1,4 @@
-package efub.session.blog.account.dto;
+package efub.session.blog.account.dto.account;
 
 import efub.session.blog.account.domain.Account;
 import jakarta.validation.constraints.Email;

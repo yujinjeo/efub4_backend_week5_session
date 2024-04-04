@@ -1,4 +1,4 @@
-package efub.session.blog.account.dto;
+package efub.session.blog.account.dto.account;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
