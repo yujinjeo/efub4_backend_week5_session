@@ -1,4 +1,4 @@
-package efub.session.blog.account.domain;
+package efub.session.blog.post.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

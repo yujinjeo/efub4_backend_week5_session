@@ -1,12 +1,11 @@
-package efub.session.blog.account.controller;
+package efub.session.blog.post.controller;
 
-import efub.session.blog.account.domain.Post;
-import efub.session.blog.account.dto.post.AllPostsResponseDto;
-import efub.session.blog.account.dto.post.PostRequestDto;
-import efub.session.blog.account.dto.post.PostResponseDto;
-import efub.session.blog.account.service.PostService;
+import efub.session.blog.post.domain.Post;
+import efub.session.blog.post.dto.post.AllPostsResponseDto;
+import efub.session.blog.post.dto.post.PostRequestDto;
+import efub.session.blog.post.dto.post.PostResponseDto;
+import efub.session.blog.post.service.PostService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

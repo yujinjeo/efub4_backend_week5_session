@@ -1,20 +1,16 @@
-package efub.session.blog.account.service;
+package efub.session.blog.post.service;
 
 import efub.session.blog.account.domain.Account;
-import efub.session.blog.account.domain.Post;
-import efub.session.blog.account.dto.post.AllPostsResponseDto;
-import efub.session.blog.account.dto.post.PostRequestDto;
-import efub.session.blog.account.dto.post.PostResponseDto;
-import efub.session.blog.account.repository.AccountRepository;
-import efub.session.blog.account.repository.PostRepository;
+import efub.session.blog.account.service.AccountService;
+import efub.session.blog.post.domain.Post;
+import efub.session.blog.post.dto.post.PostRequestDto;
+import efub.session.blog.post.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static java.lang.Boolean.*;
 
