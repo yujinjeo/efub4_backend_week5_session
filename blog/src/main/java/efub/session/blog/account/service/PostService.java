@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Boolean.*;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -47,5 +49,24 @@ public class PostService {
         Post post = postRepository.findById(postId)
                 .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Post를 찾을 수 없습니다.id="+postId));
         return post;
+    }
+
+    public Long updatePost(Long id,PostRequestDto dto) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Post를 찾을 수 없습니다.id="+id));
+        Account account = accountService.findAccountById(Long.parseLong(dto.getAccountId()));
+        post.update(dto,account);
+        return post.getPostId();
+    }
+
+    public Boolean deletePost(Long id, Long accountId){
+        //작성자가 맞는지 확인하기
+        Post post = postRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Post를 찾을 수 없습니다.id="+id));
+        if (accountId!=post.getAccount().getAccountId()){
+            return FALSE;
+        }
+        postRepository.delete(post);
+        return TRUE;
     }
 }

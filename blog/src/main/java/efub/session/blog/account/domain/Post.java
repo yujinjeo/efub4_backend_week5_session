@@ -1,5 +1,6 @@
 package efub.session.blog.account.domain;
 
+import efub.session.blog.account.dto.post.PostRequestDto;
 import efub.session.blog.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -31,6 +32,12 @@ public class Post extends BaseTimeEntity {
         this.account=account;
         this.title=title;
         this.content=content;
+    }
+
+    public void update(PostRequestDto dto, Account account){
+        this.account=account;
+        this.title=dto.getTitle();
+        this.content=dto.getContent();
     }
 
 }
