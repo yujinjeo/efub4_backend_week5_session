@@ -7,6 +7,7 @@ import efub.session.blog.post.dto.post.PostResponseDto;
 import efub.session.blog.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class PostController {
 
     /*게시글 작성*/
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public PostResponseDto createNewPost(@RequestBody @Valid final PostRequestDto dto){
         Post savedPost = postService.createNewPost(dto);
         return PostResponseDto.from(savedPost, savedPost.getAccount().getNickname());
@@ -60,12 +62,9 @@ public class PostController {
     @DeleteMapping("/{id}")
     public String deletePost(@PathVariable(name = "id") Long id,
                              @RequestParam(name = "accountId") Long account_id){
-        Boolean result = postService.deletePost(id, account_id);
-        if (!result){
-            return "작성자가 아니므로 해당 게시글을 삭제할 수 없습니다.";
-        }
-        return "성공적으로 삭제되었습니다.";
+        postService.deletePost(id, account_id);
 
+        return "성공적으로 삭제되었습니다.";
     }
 
 }

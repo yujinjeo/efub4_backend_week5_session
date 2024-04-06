@@ -2,6 +2,7 @@ package efub.session.blog.post.service;
 
 import efub.session.blog.account.domain.Account;
 import efub.session.blog.account.service.AccountService;
+import efub.session.blog.exception.CustomDeleteException;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.post.dto.post.PostRequestDto;
 import efub.session.blog.post.repository.PostRepository;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static efub.session.blog.exception.ErrorCode.PERMISSION_REJECTED_USER;
 import static java.lang.Boolean.*;
 
 @Service
@@ -55,14 +57,13 @@ public class PostService {
         return post.getPostId();
     }
 
-    public Boolean deletePost(Long id, Long accountId){
+    public void deletePost(Long id, Long accountId){
         //작성자가 맞는지 확인하기
         Post post = postRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Post를 찾을 수 없습니다.id="+id));
         if (accountId!=post.getAccount().getAccountId()){
-            return FALSE;
+            throw new CustomDeleteException(PERMISSION_REJECTED_USER);
         }
         postRepository.delete(post);
-        return TRUE;
     }
 }
