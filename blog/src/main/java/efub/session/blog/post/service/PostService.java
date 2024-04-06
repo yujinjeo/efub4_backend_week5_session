@@ -57,6 +57,7 @@ public class PostService {
         return post.getPostId();
     }
 
+    @Transactional
     public void deletePost(Long id, Long accountId){
         //작성자가 맞는지 확인하기
         Post post = postRepository.findById(id)
