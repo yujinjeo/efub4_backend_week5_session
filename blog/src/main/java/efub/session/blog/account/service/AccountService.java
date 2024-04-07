@@ -46,6 +46,7 @@ public class AccountService {
         account.withdrawAccount();
     }
 
+    @Transactional
     public void delete(Long accountId) {
         Account account = findAccountById(accountId);
         accountRepository.delete(account);

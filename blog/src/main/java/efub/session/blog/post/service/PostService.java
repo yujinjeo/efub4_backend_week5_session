@@ -26,7 +26,7 @@ public class PostService {
     @Transactional
     public Post createNewPost(PostRequestDto dto){
         Account account = accountService.findAccountById(Long.parseLong(dto.getAccountId()));
-        Post post = new Post(account, dto.getTitle(), dto.getContent());
+        Post post = dto.toEntity(account);
         Post savedPost = postRepository.save(post);
         return savedPost;
     }
@@ -62,7 +62,7 @@ public class PostService {
         //작성자가 맞는지 확인하기
         Post post = postRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Post를 찾을 수 없습니다.id="+id));
-        if (accountId!=post.getAccount().getAccountId()){
+        if (!postRepository.existsByPostIdAndAccount_AccountId(id,accountId)){
             throw new CustomDeleteException(PERMISSION_REJECTED_USER);
         }
         postRepository.delete(post);
